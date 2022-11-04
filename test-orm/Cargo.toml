@@ -1,0 +1,37 @@
+[package]
+name = "test-orm"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[workspace]
+members = [".", "migration", "entity"]
+
+[dependencies]
+entity = { path = "./entity" }
+
+futures = "0.3.21"
+sea-orm = { version = "0.10", features = [ "sqlx-postgres", "runtime-async-std-native-tls", "macros" ] }
+
+anyhow = "1"
+actix-prost = { git = "https://github.com/blockscout/actix-prost" }
+actix-prost-macros = { git = "https://github.com/blockscout/actix-prost" }
+actix-web = "4"
+prost = "0.11"
+tonic = "0.8"
+tokio = { version = "1", features = ["rt-multi-thread"] }
+serde = { version = "1", features = ["derive"] }
+serde_with = { version = "2.0", features = ["hex", "base64"] }
+async-trait = "0.1"
+hex = "0.4"
+
+[build-dependencies]
+actix-prost-build = { git = "https://github.com/blockscout/actix-prost" }
+tonic-build = "0.8"
+prost-build = "0.11"
+
+
+[patch.crates-io]
+# We need the master branch, because https://github.com/tokio-rs/prost/pull/714 isn't published yet
+prost-build = { git = "https://github.com/tokio-rs/prost" }

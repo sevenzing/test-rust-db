@@ -1,0 +1,8 @@
+type: google.api.Service
+config_version: 3
+
+http:
+  rules:
+    - selector: blockscout.eth_bytecode_db.v1.EthBytecodeDb.GetContact
+      post: /api/v1/contract
+      body: "*"

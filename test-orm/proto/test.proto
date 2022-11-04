@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package blockscout.eth_bytecode_db.v1;
+
+option go_package = "github.com/blockscout/blockscout-rs/eth-bytecode-db";
+
+
+service EthBytecodeDb {
+  rpc GetContact(ContractByBytecode) returns (Contract) {}
+}
+
+message ContractByBytecode { 
+  string bytecode = 1;
+}
+
+message Contract {
+  int32 id = 1;
+  string name = 2;
+  string content = 3;
+}
+
